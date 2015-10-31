@@ -18,8 +18,8 @@ public class Constant {
 
     public void initButtons(){
         SimpleButton simpleButton = new SimpleButton("logo",
-                (int)UIDefaultData.f_y_screen,
-                (int)UIDefaultData.f_x_screen);
+                (int)UIDefaultData.f_y_screen /2,
+                (int)UIDefaultData.f_x_screen /2);
         simpleButtons.add(simpleButton);
     }
 
