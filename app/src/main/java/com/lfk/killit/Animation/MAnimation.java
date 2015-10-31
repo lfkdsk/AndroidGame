@@ -12,4 +12,7 @@ public interface MAnimation {
     void nextFrame();
     void setBitmap(MBitmap bitmap);
     void draw(Canvas canvas,int x,int y);
+    boolean isEnd();
+    boolean isEndAnCirculation();
+    void end();
 }

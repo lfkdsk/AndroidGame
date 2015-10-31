@@ -7,10 +7,8 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.lfk.killit.Animation.MAnimation;
+import com.lfk.killit.Drawable.Button.SimpleButton;
 import com.lfk.killit.Main.MainActivity;
-import com.lfk.killit.Animation.smallToenlargeAnimation;
-import com.lfk.killit.Pic.AbsoluteBitmap;
-import com.lfk.killit.R;
 import com.lfk.killit.UI.UIDefaultData;
 import com.orhanobut.logger.Logger;
 
@@ -20,11 +18,13 @@ import com.orhanobut.logger.Logger;
 public class WelcomeView extends SurfaceView implements SurfaceHolder.Callback {
     private SurfaceHolder holder;
     private MainActivity activity;
-    private AbsoluteBitmap logo;
+//    private AbsoluteBitmap logo;
     private boolean flag = true;
     private DrawBG drawBG;
     private LoadBitmap loadBitmap;
     private MAnimation mAnimation;
+    private SimpleButton simpleButton;
+
 
     public WelcomeView(Context context) {
         super(context);
@@ -44,22 +44,26 @@ public class WelcomeView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     private void initPic() {
-        logo = new AbsoluteBitmap(R.drawable.logo);
-        mAnimation = new smallToenlargeAnimation(logo);
+//        logo = new AbsoluteBitmap(R.drawable.logo);
+//        mAnimation = new EnlargeAnimation(logo);
     }
 
     public void DrawIt(Canvas canvas) {
-        if (logo == null) return;
+//        if (logo == null) return;
 
+        simpleButton = new SimpleButton("logo",(int) (UIDefaultData.f_y_screen ) / 2,
+                (int) (UIDefaultData.f_x_screen ) / 2);
         canvas.drawColor(Color.WHITE);
-        logo.draw(canvas,
-                (int) (UIDefaultData.f_x_screen - logo.getWidth()) / 2,
-                (int) (UIDefaultData.f_y_screen - logo.getHeight()) / 2,
-                255);
-        mAnimation.start();
-
-        mAnimation.draw(canvas,(int) (UIDefaultData.f_x_screen - logo.getWidth()) / 2,
-                (int) (UIDefaultData.f_y_screen - logo.getHeight()) / 2);
+        simpleButton.setCanvas(canvas);
+        simpleButton.drawIt();
+//        logo.draw(canvas,
+//                (int) (UIDefaultData.f_x_screen - logo.getWidth()) / 2,
+//                (int) (UIDefaultData.f_y_screen - logo.getHeight()) / 2,
+//                255);
+//        mAnimation.start();
+//
+//        mAnimation.draw(canvas, (int) (UIDefaultData.f_x_screen - logo.getWidth()) / 2,
+//                (int) (UIDefaultData.f_y_screen - logo.getHeight()) / 2);
     }
 
     @Override
@@ -104,6 +108,8 @@ public class WelcomeView extends SurfaceView implements SurfaceHolder.Callback {
     private class LoadBitmap extends Thread {
         public void run() {
             // load something
+
+
             Logger.d("load over");
             try {
                 Thread.sleep(1000);
@@ -113,4 +119,6 @@ public class WelcomeView extends SurfaceView implements SurfaceHolder.Callback {
             flag = false;
         }
     }
+
+
 }

@@ -4,6 +4,8 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import com.lfk.killit.Data.Container.BipContainer;
+import com.lfk.killit.Data.Container.Constant;
 import com.lfk.killit.R;
 
 /**
@@ -15,10 +17,13 @@ public class UIDefaultData {
     public static float f_y_screen;//
     public static float f_x_screen;
 
+    public static BipContainer container_bmp;                                 //存储所有位图资源
+    public static Constant constant_button;
+
 
     public static void initScales() {
         Bitmap test = BitmapFactory.decodeResource(res, R.mipmap.ic_launcher);
-        float temp = 0;
+        float temp = 1;
         switch (test.getHeight()) {
             case 48:
             case 32:
