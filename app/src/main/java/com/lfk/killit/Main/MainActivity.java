@@ -3,7 +3,6 @@ package com.lfk.killit.Main;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.KeyEvent;
 import android.view.SurfaceView;
 
 import com.lfk.killit.Data.Container.BipContainer;
@@ -46,14 +45,7 @@ public class MainActivity extends Activity {
         UIDefaultData.constant_button.initButtons();
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_BACK:
-//                welcomeView.destroyDrawingCache();
-        }
-        return super.onKeyDown(keyCode, event);
-    }
+
 
 
 }

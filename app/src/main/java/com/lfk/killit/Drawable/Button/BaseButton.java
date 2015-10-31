@@ -2,6 +2,8 @@ package com.lfk.killit.Drawable.Button;
 
 import android.graphics.Rect;
 
+import com.lfk.killit.Data.Loacl.Location;
+
 /**
  * Created by liufengkai on 15/10/31.
  */
@@ -16,6 +18,7 @@ public interface BaseButton {
 
     void setState(int state);
 
+    Location getLocation();
     Rect getRect();
 
     void drawIt();

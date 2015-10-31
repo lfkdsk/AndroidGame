@@ -53,7 +53,9 @@ public class WelcomeView extends SurfaceView implements SurfaceHolder.Callback {
 
     private void initPic() {
         simpleButton = UIDefaultData.constant_button.getSimpleButtons().get(0);
-
+        Rect rect = simpleButton.getRect();
+        Logger.d(rect.top + " " + rect.right + " "
+                + rect.bottom + " " + rect.left);
 //        logo = new AbsoluteBitmap(R.drawable.logo);
 //        mAnimation = new EnlargeAnimation(logo);
     }
@@ -104,7 +106,7 @@ public class WelcomeView extends SurfaceView implements SurfaceHolder.Callback {
         }
 
         private void draw() {
-            Canvas canvas = holder.lockCanvas(simpleButton.getRect());
+            Canvas canvas = holder.lockCanvas();
             //获取画布
             try {
                 synchronized (holder) {

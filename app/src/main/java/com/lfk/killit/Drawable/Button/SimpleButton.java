@@ -43,6 +43,11 @@ public class SimpleButton implements BaseButton {
     }
 
     @Override
+    public Location getLocation() {
+        return mLocation;
+    }
+
+    @Override
     public Rect getRect() {
         return rect;
     }
@@ -56,6 +61,7 @@ public class SimpleButton implements BaseButton {
     }
 
 
+
     @Override
     public void drawIt() {
         if (canvas == null) {
@@ -64,14 +70,12 @@ public class SimpleButton implements BaseButton {
         }
         switch (state) {
             case NORMAL:
-                Logger.d("normal");
                 if (!mAnimation.isEnd()) {
                     if (mAnimation.isEndAnCirculation())
                         mAnimation.restore();
                     mAnimation.draw(canvas, mX, mY);
-                } else {
+                } else
                     mAnimation.getBitmap().draw(canvas, mX, mY, 255);
-                }
                 break;
             case CLICKED:
                 if (mAnimation.isEnd())
