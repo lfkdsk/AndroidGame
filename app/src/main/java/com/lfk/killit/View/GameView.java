@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.lfk.killit.MainActivity;
+import com.lfk.killit.Main.MainActivity;
 
 /**
  * Created by liufengkai on 15/10/30.

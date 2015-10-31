@@ -6,7 +6,9 @@ import android.graphics.Color;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.lfk.killit.MainActivity;
+import com.lfk.killit.Animation.MAnimation;
+import com.lfk.killit.Main.MainActivity;
+import com.lfk.killit.Animation.smallToenlargeAnimation;
 import com.lfk.killit.Pic.AbsoluteBitmap;
 import com.lfk.killit.R;
 import com.lfk.killit.UI.UIDefaultData;
@@ -22,6 +24,7 @@ public class WelcomeView extends SurfaceView implements SurfaceHolder.Callback {
     private boolean flag = true;
     private DrawBG drawBG;
     private LoadBitmap loadBitmap;
+    private MAnimation mAnimation;
 
     public WelcomeView(Context context) {
         super(context);
@@ -40,18 +43,23 @@ public class WelcomeView extends SurfaceView implements SurfaceHolder.Callback {
         initPic();
     }
 
-    private void initPic(){
+    private void initPic() {
         logo = new AbsoluteBitmap(R.drawable.logo);
+        mAnimation = new smallToenlargeAnimation(logo);
     }
 
-    public void onDraw(Canvas canvas){
+    public void DrawIt(Canvas canvas) {
         if (logo == null) return;
 
         canvas.drawColor(Color.WHITE);
         logo.draw(canvas,
-                (int)(UIDefaultData.f_x_screen - logo.getWidth()) / 2,
-                (int)(UIDefaultData.f_y_screen - logo.getHeight()) / 2,
+                (int) (UIDefaultData.f_x_screen - logo.getWidth()) / 2,
+                (int) (UIDefaultData.f_y_screen - logo.getHeight()) / 2,
                 255);
+        mAnimation.start();
+
+        mAnimation.draw(canvas,(int) (UIDefaultData.f_x_screen - logo.getWidth()) / 2,
+                (int) (UIDefaultData.f_y_screen - logo.getHeight()) / 2);
     }
 
     @Override
@@ -70,7 +78,7 @@ public class WelcomeView extends SurfaceView implements SurfaceHolder.Callback {
 
     }
 
-    private class DrawBG extends Thread{
+    private class DrawBG extends Thread {
         @Override
         public void run() {
             super.run();
@@ -78,7 +86,7 @@ public class WelcomeView extends SurfaceView implements SurfaceHolder.Callback {
             Canvas canvas = myHolder.lockCanvas();                        //获取画布
             try {
                 synchronized (myHolder) {
-                    WelcomeView.this.onDraw(canvas);                        //绘制
+                    WelcomeView.this.DrawIt(canvas);                        //绘制
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -86,7 +94,8 @@ public class WelcomeView extends SurfaceView implements SurfaceHolder.Callback {
                 if (canvas != null)
                     myHolder.unlockCanvasAndPost(canvas);
             }
-            while (flag){}
+            while (flag) {
+            }
 
         }
     }

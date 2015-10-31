@@ -1,8 +1,9 @@
-package com.lfk.killit;
+package com.lfk.killit.Main;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.KeyEvent;
 
 import com.lfk.killit.UI.UIDefaultData;
 import com.lfk.killit.View.WelcomeView;
@@ -33,4 +34,12 @@ public class MainActivity extends Activity {
         UIDefaultData.initScales();
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode){
+            case KeyEvent.KEYCODE_BACK:
+                welcomeView.destroyDrawingCache();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

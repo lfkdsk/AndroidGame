@@ -3,6 +3,7 @@ package com.lfk.killit.Pic;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
+import com.lfk.killit.Animation.MAnimation;
 import com.lfk.killit.UI.UIDefaultData;
 import com.orhanobut.logger.Logger;
 
@@ -12,6 +13,8 @@ import com.orhanobut.logger.Logger;
 public class AbsoluteBitmap implements MBitmap {
     private Bitmap bitmap;
     private MBitmapFactory mBitmapFactory;
+    private MAnimation animation;
+
 
     public AbsoluteBitmap(int id) {
         mBitmapFactory = new DefaultBitmapFactory();
@@ -31,6 +34,11 @@ public class AbsoluteBitmap implements MBitmap {
     @Override
     public Bitmap getBitmap() {
         return bitmap;
+    }
+
+    public void setAnimation(MAnimation animation){
+        this.animation = animation;
+        this.animation.setBitmap(this);
     }
 
     @Override
