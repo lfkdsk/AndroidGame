@@ -24,13 +24,16 @@ public class SimpleButton implements BaseButton {
 
     public SimpleButton(String mName, int mY, int mX) {
         this.mName = mName;
-        this.mY = mY;
-        this.mX = mX;
         this.mBitmap = UIDefaultData.container_bmp.getBitmap(mName);
+        this.mY = mY - mBitmap.getHeight() / 2;
+        this.mX = mX - mBitmap.getWidth() / 2;
         this.mAnimation = new EnlargeAnimation(mBitmap);
         this.mLocation = new Location(mX, mY, mName);
-        rect = new Rect(mX, mY, mX + mBitmap.getWidth(), mY + mBitmap.getHeight());
+        rect = new Rect(mX - mBitmap.getWidth() / 2, mY - mBitmap.getHeight() / 2,
+                mX + mBitmap.getWidth(), mY + mBitmap.getHeight());
     }
+
+
 
     @Override
     public int getState() {
@@ -52,6 +55,11 @@ public class SimpleButton implements BaseButton {
         return rect;
     }
 
+    @Override
+    public String getName() {
+        return mName;
+    }
+
     public Location getmLocation() {
         return mLocation;
     }
@@ -59,7 +67,6 @@ public class SimpleButton implements BaseButton {
     public void setCanvas(Canvas canvas) {
         this.canvas = canvas;
     }
-
 
 
     @Override

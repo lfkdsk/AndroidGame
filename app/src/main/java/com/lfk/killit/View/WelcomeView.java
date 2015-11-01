@@ -145,7 +145,6 @@ public class WelcomeView extends SurfaceView implements SurfaceHolder.Callback {
         public void run() {
             // load something
 
-
             Logger.d("load over");
             try {
                 Thread.sleep(1000);
@@ -158,14 +157,9 @@ public class WelcomeView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-//        if (activity.currentView == ) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 for (int i = 0; i < list.size(); i++) {
-//                    BaseButton button = (SimpleButton) list.get(i);
-                    Rect rect = ((SimpleButton) list.get(i)).getRect();
-                    Logger.d(rect.top + " " + rect.right + " "
-                            + rect.bottom + " " + rect.left);
                     if (((SimpleButton) list.get(i)).getRect().
                             contains((int) event.getX(),
                                     (int) event.getY())) {
@@ -180,10 +174,9 @@ public class WelcomeView extends SurfaceView implements SurfaceHolder.Callback {
                 break;
             case MotionEvent.ACTION_UP:
                 if (hitbutton && button.getRect().contains((int) event.getX(), (int) event.getY())) {
-                    System.out.println("set NORMAL");
                     button.setState(BaseButton.NORMAL);
+                    onClicked(button.getName());
                     button = null;
-//                    onClicked(name);
                 } else if (hitbutton) {
                     button.setState(BaseButton.NORMAL);
                     button = null;
@@ -191,8 +184,13 @@ public class WelcomeView extends SurfaceView implements SurfaceHolder.Callback {
                 hitbutton = false;
                 break;
         }
-//        }
         return true;
+    }
+
+    private void onClicked(String name){
+        if(name.equals("logo")){
+
+        }
     }
 
 }

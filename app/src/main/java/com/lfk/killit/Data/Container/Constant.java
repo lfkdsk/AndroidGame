@@ -10,20 +10,21 @@ import java.util.List;
  * Created by liufengkai on 15/10/31.
  */
 public class Constant {
-    private List<SimpleButton> simpleButtons;
+    private List<SimpleButton> welcomeButtons;
+
 
     public Constant() {
-        simpleButtons = new ArrayList<>();
+        welcomeButtons = new ArrayList<>();
     }
 
-    public void initButtons(){
+    public void initWelcomeButtons(){
         SimpleButton simpleButton = new SimpleButton("logo",
                 (int)UIDefaultData.f_y_screen /2,
                 (int)UIDefaultData.f_x_screen /2);
-        simpleButtons.add(simpleButton);
+        welcomeButtons.add(simpleButton);
     }
 
     public List<SimpleButton> getSimpleButtons() {
-        return simpleButtons;
+        return welcomeButtons;
     }
 }

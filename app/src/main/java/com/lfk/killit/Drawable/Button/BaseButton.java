@@ -20,6 +20,6 @@ public interface BaseButton {
 
     Location getLocation();
     Rect getRect();
-
+    String getName();
     void drawIt();
 }

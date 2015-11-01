@@ -2,6 +2,8 @@ package com.lfk.killit.Main;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.DisplayMetrics;
 import android.view.SurfaceView;
 
@@ -42,10 +44,24 @@ public class MainActivity extends Activity {
         UIDefaultData.container_bmp.initPic();
 
         UIDefaultData.constant_button = new Constant();
-        UIDefaultData.constant_button.initButtons();
+        UIDefaultData.constant_button.initWelcomeButtons();
     }
 
+    public void sendMessage(int i){
+        Message message = handler.obtainMessage(i);
+        handler.sendMessage(message);
+    }
 
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 0:
 
+                    break;
+            }
+        }
+    };
 
 }
