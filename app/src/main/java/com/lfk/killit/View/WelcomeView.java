@@ -171,7 +171,7 @@ public class WelcomeView extends SurfaceView implements SurfaceHolder.Callback {
                             Log.e("i:",i+"");
                         }
                     }
-                }, 100, 100);
+                }, 1000, 100);
 
             } catch (Exception e) {
                 e.printStackTrace();
