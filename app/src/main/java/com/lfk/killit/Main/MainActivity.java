@@ -5,17 +5,21 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.SurfaceView;
 
 import com.lfk.killit.Data.Container.BipContainer;
 import com.lfk.killit.Data.Container.Constant;
 import com.lfk.killit.UI.UIDefaultData;
+import com.lfk.killit.View.GameView;
 import com.lfk.killit.View.WelcomeView;
 
 
 public class MainActivity extends Activity {
     private WelcomeView welcomeView;
     public SurfaceView currentView = null;
+    private GameView gameView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +28,8 @@ public class MainActivity extends Activity {
         initStaticData();
 
         welcomeView = new WelcomeView(this);
+
+        gameView = new GameView(this);
 
         currentView = welcomeView;
 
@@ -41,27 +47,49 @@ public class MainActivity extends Activity {
         UIDefaultData.initScales();
 
         UIDefaultData.container_bmp = new BipContainer();
-        UIDefaultData.container_bmp.initPic();
+        UIDefaultData.container_bmp.initLogoPic();
 
         UIDefaultData.constant_button = new Constant();
         UIDefaultData.constant_button.initWelcomeButtons();
+
+        UIDefaultData.initButton();
+
+        UIDefaultData.container_bmp.initlogoBits(this);
     }
 
-    public void sendMessage(int i){
+    public void sendMessage(int i) {
         Message message = handler.obtainMessage(i);
         handler.sendMessage(message);
     }
 
-    private Handler handler = new Handler(){
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
                 case 0:
-
+                    Log.e("back","it");
+                    welcomeView.startIt();
+                    MainActivity.this.setContentView(welcomeView);
+                    break;
+                case 1:
+                    if (gameView == null) {
+                        gameView = new GameView(MainActivity.this);
+                    }
+                    MainActivity.this.setContentView(gameView);
                     break;
             }
         }
     };
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode){
+            case KeyEvent.KEYCODE_BACK:
+                sendMessage(0);
+                break;
+        }
+        return true;
+
+    }
 }

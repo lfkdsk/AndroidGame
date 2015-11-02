@@ -4,25 +4,22 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 import com.lfk.killit.Animation.MAnimation;
-import com.lfk.killit.UI.UIDefaultData;
-import com.orhanobut.logger.Logger;
 
 /**
- * Created by liufengkai on 15/10/30.
+ * Created by liufengkai on 15/11/2.
  */
-public class AbsoluteBitmap implements MBitmap {
+public class LocalBitmaps implements MBitmap {
     private Bitmap bitmap;
     private MBitmapFactory mBitmapFactory;
     private MAnimation animation;
+    private int mX, mY;
+    private Canvas canvas;
 
-
-    public AbsoluteBitmap(int id) {
+    public LocalBitmaps(int id, int mX, int mY) {
         mBitmapFactory = new DefaultBitmapFactory();
         bitmap = mBitmapFactory.createBitmap(id);
-    }
-
-    public AbsoluteBitmap(Bitmap bitmap){
-        this.bitmap = bitmap;
+        this.mX = mX - bitmap.getWidth() / 2;
+        this.mY = mY - bitmap.getHeight() / 2;
     }
 
     @Override
@@ -40,20 +37,20 @@ public class AbsoluteBitmap implements MBitmap {
         return bitmap;
     }
 
-    public void setAnimation(MAnimation animation){
-        this.animation = animation;
-        this.animation.setBitmap(this);
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
+    }
+
+    public void setCanvas(Canvas canvas) {
+        this.canvas = canvas;
+    }
+
+    public void DrawIt() {
+        canvas.drawBitmap(bitmap, mX, mY, null);
     }
 
     @Override
     public void draw(Canvas canvas, int cx, int cy, int alpha) {
-        if (cx + bitmap.getWidth() >= 0 &&
-                cx < UIDefaultData.f_x_screen &&
-                cy >= 0 &&
-                cy < UIDefaultData.f_y_screen) {
-            canvas.drawBitmap(bitmap, cx, cy, null);
-        } else {
-            Logger.d("绘图越界");
-        }
+
     }
 }
