@@ -34,6 +34,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private BaseButton button = null;
     private boolean hitbutton = false;
     private Rect rect;
+
     public GameView(Context context) {
         super(context);
     }
@@ -47,14 +48,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
         this.mBitmap = UIDefaultData.container_bmp.getBitmap("background");
 
-        this.player = new Player("left_player",(int) UIDefaultData.f_x_screen / 2,
-                (int)UIDefaultData.f_y_screen / 2);
+        this.player = new Player("left_player", (int) UIDefaultData.f_x_screen / 2,
+                (int) UIDefaultData.f_y_screen / 2);
 
         left_button = UIDefaultData.constant_button.getSimpleButtons().get("left_button");
         right_button = UIDefaultData.constant_button.getSimpleButtons().get("right_button");
         hit_it_button = UIDefaultData.constant_button.getSimpleButtons().get("hit_it");
 
-        rect = new Rect(0,0,(int)UIDefaultData.f_x_screen,(int)UIDefaultData.f_y_screen);
+        rect = new Rect(0, 0, (int) UIDefaultData.f_x_screen, (int) UIDefaultData.f_y_screen);
     }
 
     @Override
@@ -90,7 +91,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             Canvas canvas = holder.lockCanvas();
             try {
                 synchronized (holder) {
-                    canvas.drawBitmap(mBitmap.getBitmap(),null,rect, null);
+                    canvas.drawBitmap(mBitmap.getBitmap(), null, rect, null);
                     left_button.setCanvas(canvas);
                     right_button.setCanvas(canvas);
                     hit_it_button.setCanvas(canvas);
@@ -163,7 +164,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     private void onClicked(String name) {
-        switch (name){
+        switch (name) {
             case "right_button":
                 player.setmBitmap(UIDefaultData.container_bmp.getBitmap("right_player"));
                 break;
@@ -172,4 +173,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
                 break;
         }
     }
+
+//    public void stopIt(){
+////        drawBG.setFlag(false);
+//        drawBG.setWork(false);
+//    }
 }

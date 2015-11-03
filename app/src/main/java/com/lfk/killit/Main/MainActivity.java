@@ -5,9 +5,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.SurfaceView;
+import android.widget.Toast;
 
 import com.lfk.killit.Data.Container.BipContainer;
 import com.lfk.killit.Data.Container.Constant;
@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
     private WelcomeView welcomeView;
     public SurfaceView currentView = null;
     private GameView gameView;
-
+    private long time;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,14 +68,20 @@ public class MainActivity extends Activity {
             super.handleMessage(msg);
             switch (msg.what) {
                 case 0:
-                    Log.e("back","it");
-                    welcomeView.startIt();
-                    MainActivity.this.setContentView(welcomeView);
+                    if(currentView == welcomeView) {
+                        if(System.currentTimeMillis() - time > 800){
+                            Toast.makeText(MainActivity.this, "再按一次推出", Toast.LENGTH_SHORT).show();
+                            time = System.currentTimeMillis();
+                        }else {
+                            finish();
+                        }
+                    }
                     break;
                 case 1:
                     if (gameView == null) {
                         gameView = new GameView(MainActivity.this);
                     }
+                    currentView = gameView;
                     MainActivity.this.setContentView(gameView);
                     break;
             }
