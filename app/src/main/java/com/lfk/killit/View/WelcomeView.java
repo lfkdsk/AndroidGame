@@ -50,7 +50,7 @@ public class WelcomeView extends SurfaceView implements SurfaceHolder.Callback {
         loadBitmap = new LoadBitmap();
 
         mAnimation = new DisposableAnimation("logo_", 66,
-                20,
+                30,
                 (int) UIDefaultData.f_x_screen / 2,
                 (int) UIDefaultData.f_y_screen / 2);
         initPic();
@@ -65,7 +65,7 @@ public class WelcomeView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        if(first_flag){
+        if (first_flag) {
             drawBG = new DrawBG();
             drawBG.setWork(true);
             drawBG.start();
@@ -208,7 +208,7 @@ public class WelcomeView extends SurfaceView implements SurfaceHolder.Callback {
                             button = (SimpleButton) mapEntry.getValue();
                             hitbutton = true;
                         } else {
-                            Logger.e(event.getX() + " " + event.getY());
+//                            Logger.e(event.getX() + " " + event.getY());
                         }
                     }
                 }

@@ -23,7 +23,9 @@ public class UIDefaultData {
     public static BipContainer container_bmp;                                 //存储所有位图资源
     public static Constant constant_button;
     public static Map<String,SimpleButton> list;
-    public static final int DRAW_INTERVAL = 35;       //绘图时间间隔
+    public static final int DRAW_INTERVAL = 35;       // 绘图时间间隔
+
+    public static final int SKILL_INTERVAL = 60;      // 技能时间间隔
 
     public static int[] logoAnim = {R.drawable.logo_1,
             R.drawable.logo_2, R.drawable.logo_3,

@@ -82,6 +82,7 @@ public class MainActivity extends Activity {
                         gameView = new GameView(MainActivity.this);
                     }
                     currentView = gameView;
+                    welcomeView = null;
                     MainActivity.this.setContentView(gameView);
                     break;
             }
@@ -96,6 +97,13 @@ public class MainActivity extends Activity {
                 break;
         }
         return true;
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        welcomeView = null;
+        gameView = null;
+        currentView = null;
     }
 }

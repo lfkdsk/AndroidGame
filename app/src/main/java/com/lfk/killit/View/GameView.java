@@ -9,11 +9,11 @@ import android.view.SurfaceView;
 
 import com.lfk.killit.Drawable.Button.BaseButton;
 import com.lfk.killit.Drawable.Button.SimpleButton;
+import com.lfk.killit.Drawable.Character.Character;
 import com.lfk.killit.Drawable.Character.Player;
 import com.lfk.killit.Main.MainActivity;
 import com.lfk.killit.Pic.MBitmap;
 import com.lfk.killit.UI.UIDefaultData;
-import com.orhanobut.logger.Logger;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -48,12 +48,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
         this.mBitmap = UIDefaultData.container_bmp.getBitmap("background");
 
-        this.player = new Player("left_player", (int) UIDefaultData.f_x_screen / 2,
+        this.player = new Player("player_",
+                (int) UIDefaultData.f_x_screen / 2,
                 (int) UIDefaultData.f_y_screen / 2);
 
         left_button = UIDefaultData.constant_button.getSimpleButtons().get("left_button");
         right_button = UIDefaultData.constant_button.getSimpleButtons().get("right_button");
-        hit_it_button = UIDefaultData.constant_button.getSimpleButtons().get("hit_it");
+        hit_it_button = UIDefaultData.constant_button.getSimpleButtons().get("hit_button");
 
         rect = new Rect(0, 0, (int) UIDefaultData.f_x_screen, (int) UIDefaultData.f_y_screen);
     }
@@ -118,9 +119,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
                     draw();
                     long end_time = System.currentTimeMillis();
                     //控制帧数
-                    if (end_time - begin_time < 60)
+                    if (end_time - begin_time < UIDefaultData.DRAW_INTERVAL)
                         try {
-                            Thread.sleep(60 - (end_time - begin_time));
+                            Thread.sleep(UIDefaultData.DRAW_INTERVAL - (end_time - begin_time));
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -144,7 +145,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
                         button = (SimpleButton) mapEntry.getValue();
                         hitbutton = true;
                     } else {
-                        Logger.e(event.getX() + " " + event.getY());
+//                        Logger.e(event.getX() + " " + event.getY());
                     }
                 }
                 break;
@@ -166,16 +167,15 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private void onClicked(String name) {
         switch (name) {
             case "right_button":
-                player.setmBitmap(UIDefaultData.container_bmp.getBitmap("right_player"));
+                player.changeDirection(Character.RIGHT);
                 break;
             case "left_button":
-                player.setmBitmap(UIDefaultData.container_bmp.getBitmap("left_player"));
+                player.changeDirection(Character.LEFT);
+                break;
+            case "hit_button":
+                player.killIt();
                 break;
         }
     }
 
-//    public void stopIt(){
-////        drawBG.setFlag(false);
-//        drawBG.setWork(false);
-//    }
 }

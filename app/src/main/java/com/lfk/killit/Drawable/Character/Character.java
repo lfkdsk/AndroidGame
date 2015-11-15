@@ -9,6 +9,8 @@ import com.lfk.killit.Pic.MBitmap;
  * Created by liufengkai on 15/11/1.
  */
 public interface Character {
+    int LEFT = 0;
+    int RIGHT = 1;
 
     Rect getRect();
 
@@ -18,7 +20,7 @@ public interface Character {
 
     Location getLocation();
 
-    MBitmap getmBitmap();
+    MBitmap getBitmap();
 
     void DrawIt();
 }

@@ -30,6 +30,17 @@ public class DisposableAnimation implements MAnimation {
         this.mY = mY - bitmaps.get(name + 1).getHeight() / 2;
     }
 
+    public DisposableAnimation(MAnimation mAnimation) {
+        this.bitmaps = UIDefaultData.container_bmp.getLogobitmaps();
+        this.i_interval = mAnimation.getInterval();
+        i_current_frame = -1;
+        i_control = 0;
+        this.name = mAnimation.getName();
+        i_frame = mAnimation.getFrame();
+        this.mX = mX - bitmaps.get(name + 1).getWidth() / 2;
+        this.mY = mY - bitmaps.get(name + 1).getHeight() / 2;
+    }
+
     @Override
     public void start() {
         i_control = i_current_frame = 0;
@@ -84,5 +95,20 @@ public class DisposableAnimation implements MAnimation {
     @Override
     public void end() {
         i_current_frame = -1;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public int getFrame() {
+        return i_current_frame;
+    }
+
+    @Override
+    public int getInterval() {
+        return i_interval;
     }
 }

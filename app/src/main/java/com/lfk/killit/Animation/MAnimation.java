@@ -15,4 +15,7 @@ public interface MAnimation {
     boolean isEnd();
     boolean isEndAnCirculation();
     void end();
+    String getName();
+    int getFrame();
+    int getInterval();
 }
