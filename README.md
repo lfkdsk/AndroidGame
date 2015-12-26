@@ -1,5 +1,9 @@
 # AndroidGame
 Android primordial game  
+## Tip:  
+这个游戏是直接写的原生Android游戏，未经框架规划，写的特别乱，现在已经不更新了，有兴趣开发原生Android游戏练习的同学，
+可以看我的[JustWeEngine-轻量级Android游戏框架](https://github.com/lfkdsk/JustWeEngine) 
+
 ## 预览图
 ![p1](https://github.com/lfkdsk/AndroidGame/blob/master/art/open.png)  
 ![p2](https://github.com/lfkdsk/AndroidGame/blob/master/art/startbutton.png)  
